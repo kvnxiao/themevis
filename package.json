@@ -8,18 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "tinycolor2": "^1.4.1",
+    "@ctrl/tinycolor": "2.2.1",
     "vue": "2.5.21",
     "vue-class-component": "6.3.2",
-    "vue-color": "^2.7.0",
-    "vue-eva-icons": "^1.1.0",
+    "vue-color": "2.7.0",
     "vue-property-decorator": "7.2.0",
     "vue-router": "3.0.2",
     "vuex": "3.0.1"
   },
   "devDependencies": {
-    "@types/tinycolor2": "^1.4.1",
-    "@types/vue-color": "^2.4.1",
+    "@types/vue-color": "2.4.1",
     "@vue/cli-plugin-babel": "3.2.0",
     "@vue/cli-plugin-typescript": "3.2.0",
     "@vue/cli-service": "3.2.0",
