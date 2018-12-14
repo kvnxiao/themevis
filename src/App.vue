@@ -16,7 +16,7 @@ import { ColorName } from "@/ts/colors"
 })
 export default class App extends Vue {
     get background(): string {
-        return this.$store.getters.color(ColorName.background).toHexString()
+        return this.$store.getters.color(ColorName.background).darken(5).toHexString()
     }
     get foreground(): string {
         return this.$store.getters.color(ColorName.foreground).toHexString()

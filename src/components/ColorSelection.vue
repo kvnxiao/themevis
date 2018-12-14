@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator"
-import { ColorName, ColorsPayload, HEX_REGEX, FRIENDLY_NAMES } from "@/ts/colors"
+import { ColorName, ColorsPayload, FORMAT_REGEX, FRIENDLY_NAMES } from "@/ts/colors"
 
 @Component
 export default class ColorSelection extends Vue {
@@ -25,7 +25,7 @@ export default class ColorSelection extends Vue {
 
     public set(event: any) {
         const newColor = event.target.value
-        if (HEX_REGEX.test(newColor)) {
+        if (FORMAT_REGEX.test(newColor)) {
             this.$store.commit("setColor", {
                 colorName: this.colorName,
                 newColor,

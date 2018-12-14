@@ -1,5 +1,5 @@
 <template lang="pug">
-    nav.navbar.has-shadow.is-spaced(:style="{ color: foreground }")
+    nav.navbar.is-spaced(:style="{ color: foreground, borderColor: background }")
         a.navbar-item
             // LOGO HERE
             img(src="https://via.placeholder.com/64")
@@ -25,6 +25,7 @@ export default class NavBar extends Vue {
 <style lang="sass" scoped>
 .navbar
     background-color: transparent
+    border-bottom: 2px solid
 
 .navbar-item
     color: inherit

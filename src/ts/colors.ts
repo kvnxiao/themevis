@@ -1,8 +1,17 @@
-import tinycolor, { Instance as TCInstance } from "tinycolor2"
+import { TinyColor } from "@ctrl/tinycolor"
 
 // tslint:disable-next-line:max-line-length
-export const HEX_REGEX = new RegExp(/^#?[A-Fa-f0-9]{6}$|^rgb\([0-9]{1,3},\s*[0-9]{1,3},\s*[0-9]{1,3}\)$/)
+/**
+ * Regex to match acceptable color format types for text input.
+ * Currently set as:
+ * - 6-char HEX with or without '#' prefix
+ * - rgb(x,y,z) values where x, y, z are integers (spaces are acceptable after each comma)
+ */
+export const FORMAT_REGEX = new RegExp(/^#?[A-Fa-f0-9]{6}$|^rgb\([0-9]{1,3},\s*[0-9]{1,3},\s*[0-9]{1,3}\)$/)
 
+/**
+ * Enum-string mapping to represent color names
+ */
 export enum ColorName {
     color1 = "color1",
     color2 = "color2",
@@ -24,6 +33,9 @@ export enum ColorName {
     foreground = "foreground",
 }
 
+/**
+ * Mapping of color number to friendly color name
+ */
 export const FRIENDLY_NAMES: { [key: string]: string } = {
     color1: "Black",
     color2: "Red",
@@ -45,56 +57,70 @@ export const FRIENDLY_NAMES: { [key: string]: string } = {
     foreground: "Foreground",
 }
 
+/**
+ * Class to encapsulate all the color selections that can be made
+ */
 export default class ColorSelections {
-    public background: TCInstance
-    public foreground: TCInstance
-    public color1: TCInstance
-    public color2: TCInstance
-    public color3: TCInstance
-    public color4: TCInstance
-    public color5: TCInstance
-    public color6: TCInstance
-    public color7: TCInstance
-    public color8: TCInstance
-    public color9: TCInstance
-    public color10: TCInstance
-    public color11: TCInstance
-    public color12: TCInstance
-    public color13: TCInstance
-    public color14: TCInstance
-    public color15: TCInstance
-    public color16: TCInstance
+    private background: TinyColor
+    private foreground: TinyColor
+    private color1: TinyColor
+    private color2: TinyColor
+    private color3: TinyColor
+    private color4: TinyColor
+    private color5: TinyColor
+    private color6: TinyColor
+    private color7: TinyColor
+    private color8: TinyColor
+    private color9: TinyColor
+    private color10: TinyColor
+    private color11: TinyColor
+    private color12: TinyColor
+    private color13: TinyColor
+    private color14: TinyColor
+    private color15: TinyColor
+    private color16: TinyColor
 
     constructor() {
-        this.background = tinycolor("#2E3440")
-        this.foreground = tinycolor("#D8DEE9")
-        this.color1 = tinycolor("#3B4252")
-        this.color2 = tinycolor("#BF616A")
-        this.color3 = tinycolor("#A3BE8C")
-        this.color4 = tinycolor("#EBCB8B")
-        this.color5 = tinycolor("#81A1C1")
-        this.color6 = tinycolor("#B48EAD")
-        this.color7 = tinycolor("#88C0D0")
-        this.color8 = tinycolor("#E5E9F0")
-        this.color9 = tinycolor("#4C566A")
-        this.color10 = tinycolor("#BF616A")
-        this.color11 = tinycolor("#A3BE8C")
-        this.color12 = tinycolor("#EBCB8B")
-        this.color13 = tinycolor("#81A1C1")
-        this.color14 = tinycolor("#B48EAD")
-        this.color15 = tinycolor("#8FBCBB")
-        this.color16 = tinycolor("#ECEFF4")
+        this.background = new TinyColor("#2E3440")
+        this.foreground = new TinyColor("#D8DEE9")
+        this.color1 = new TinyColor("#3B4252")
+        this.color2 = new TinyColor("#BF616A")
+        this.color3 = new TinyColor("#A3BE8C")
+        this.color4 = new TinyColor("#EBCB8B")
+        this.color5 = new TinyColor("#81A1C1")
+        this.color6 = new TinyColor("#B48EAD")
+        this.color7 = new TinyColor("#88C0D0")
+        this.color8 = new TinyColor("#E5E9F0")
+        this.color9 = new TinyColor("#4C566A")
+        this.color10 = new TinyColor("#BF616A")
+        this.color11 = new TinyColor("#A3BE8C")
+        this.color12 = new TinyColor("#EBCB8B")
+        this.color13 = new TinyColor("#81A1C1")
+        this.color14 = new TinyColor("#B48EAD")
+        this.color15 = new TinyColor("#8FBCBB")
+        this.color16 = new TinyColor("#ECEFF4")
     }
 
+    /**
+     * Sets a new color for the given color name
+     * @param payload payload containing color number enum-string and the new color as a string to be parsed
+     */
     public set(payload: ColorsPayload) {
-        this[payload.colorName] = tinycolor(payload.newColor)
+        this[payload.colorName] = new TinyColor(payload.newColor)
     }
 
-    public get(colorName: ColorName): TCInstance {
+    /**
+     * Gets the color instance for the given color name
+     * @param colorName color number enum-string
+     */
+    public get(colorName: ColorName): TinyColor {
         return this[colorName]
     }
 }
 
+/**
+ * Payload to be used by setters and state management externally (e.g. Vuex)
+ */
 export interface ColorsPayload {
     colorName: ColorName
     newColor: string

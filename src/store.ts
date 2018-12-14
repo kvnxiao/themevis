@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
     getters: {
         color: (state: any) => (colorName: ColorName) => {
-            return state.colors[colorName]
+            return state.colors.get(colorName)
         },
     },
 })
