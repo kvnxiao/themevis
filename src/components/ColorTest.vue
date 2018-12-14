@@ -4,7 +4,7 @@
         .body
             p > colortest
             br
-            p &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdef&nbsp&nbsp&nbsp&nbsp&nbsp40m&nbsp&nbsp&nbsp&nbsp&nbsp41m&nbsp&nbsp&nbsp&nbsp&nbsp42m&nbsp&nbsp&nbsp&nbsp&nbsp43m&nbsp&nbsp&nbsp&nbsp&nbsp44m&nbsp&nbsp&nbsp&nbsp&nbsp45m&nbsp&nbsp&nbsp&nbsp&nbsp46m&nbsp&nbsp&nbsp&nbsp&nbsp47m&nbsp&nbsp
+            p &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdef&nbsp&nbsp&nbsp&nbsp&nbsp40m&nbsp&nbsp&nbsp&nbsp&nbsp41m&nbsp&nbsp&nbsp&nbsp&nbsp42m&nbsp&nbsp&nbsp&nbsp&nbsp43m&nbsp&nbsp&nbsp&nbsp&nbsp44m&nbsp&nbsp&nbsp&nbsp&nbsp45m&nbsp&nbsp&nbsp&nbsp&nbsp46m&nbsp&nbsp&nbsp&nbsp&nbsp47m&nbsp&nbsp&nbsp
             p &nbsp&nbsp&nbsp&nbsp&nbspm&nbsp
                 span
                     span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
@@ -413,17 +413,18 @@ export default class NavBar extends Vue {
 }
 </script>
 
-
 <style lang="sass" scoped>
 #colortest
     padding: 2px
     margin: 0 auto
-    width: 50em
+    max-width: 50em
     font-size: 16px
     font-weight: 500
     border-radius: 3px
     box-shadow: 0 5px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
     .body
+        white-space: nowrap
+        overflow-x: auto
         font-family: "Fira Code", monospace
         letter-spacing: 0.25px
         line-height: 1.25
