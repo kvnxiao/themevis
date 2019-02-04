@@ -650,7 +650,7 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@ctrl/tinycolor@^2.2.1":
+"@ctrl/tinycolor@2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@ctrl/tinycolor/-/tinycolor-2.2.1.tgz#4aae678391bb65ce12c39c0fed5159273709dd81"
   integrity sha512-HFYW2zo5H9L61it865F/6fMOphYRVxdSztcB3DHn9AoaNOO9G+uIBuNXwkt+BwT7CbjQoJ6N5L6VjF5Mumztkw==
@@ -694,7 +694,7 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.1.tgz#48fd98c1561fe718b61733daed46ff115b496e18"
   integrity sha512-eqz8c/0kwNi/OEHQfvIuJVLTst3in0e7uTKeuY+WL/zfKn0xVujOTp42bS/vUUokhK5P2BppLd9JXMOMHcgbjA==
 
-"@types/vue-color@^2.4.1":
+"@types/vue-color@2.4.1":
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/@types/vue-color/-/vue-color-2.4.1.tgz#36892314b278ed3d348e035ea96df5df449fa86b"
   integrity sha512-jv8X0SyYICdBRqLdC+r0wv12hyfN7EKJLe9yfxhR+5XVl96CW3EsF90/Rg3Xc8goLX0f3Sb4iZ7kFPv8HMk3lQ==
@@ -7674,7 +7674,7 @@ vue-class-component@6.3.2, vue-class-component@^6.2.0:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-6.3.2.tgz#e6037e84d1df2af3bde4f455e50ca1b9eec02be6"
   integrity sha512-cH208IoM+jgZyEf/g7mnFyofwPDJTM/QvBNhYMjqGB8fCsRyTf68rH2ISw/G20tJv+5mIThQ3upKwoL4jLTr1A==
 
-vue-color@^2.7.0:
+vue-color@2.7.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/vue-color/-/vue-color-2.7.0.tgz#31e898370a5786fd6c3007388cb7242db6ba6988"
   integrity sha512-fak9oPRL3BsYtakTGmWIS2yNRppRYNlMgGGq78CMH34ipU8fLgi/bT9JiSPcscpdTNLGracuOFuZ8OFeml+SQQ==

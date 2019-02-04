@@ -2,7 +2,7 @@
     #color-selections
         p.control.options
             label.checkbox
-                input(type="checkbox")
+                input(type="checkbox", id="checkbox", @click="toggle")
                 |  Use generic names instead of color names
 
         p Primary
@@ -42,7 +42,13 @@ import ColorSelection from "@/components/ColorSelection.vue"
         ColorSelection,
     },
 })
-export default class ColorSelections extends Vue {}
+export default class ColorSelections extends Vue {
+    public useGenericName: boolean = false
+
+    public toggle() {
+        this.$store.commit("toggleUseGenericNames")
+    }
+}
 </script>
 
 <style lang="sass" scoped>

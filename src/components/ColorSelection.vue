@@ -1,7 +1,7 @@
 <template lang="pug">
     .field.has-addons
         p.control
-            a.button.is-static {{ friendlyName }}
+            a.button.is-static {{ name }}
         p.control.is-expanded
             input.input(type="text", :value="color", @input="set", @blur="refresh")
         p.control.color
@@ -17,8 +17,10 @@ export default class ColorSelection extends Vue {
     @Prop()
     public colorName!: string
 
-    get friendlyName(): string {
-        return FRIENDLY_NAMES[this.colorName]
+    get name(): string {
+        return (this.$store.getters.useGenericName())
+            ? this.colorName.toString()
+            : FRIENDLY_NAMES[this.colorName]
     }
 
     public color: string = this.$store.getters.color(this.colorName).toHexString()

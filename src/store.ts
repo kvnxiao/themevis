@@ -4,25 +4,40 @@ import ColorSelections, { ColorName, ColorsPayload } from "@/ts/colors"
 
 Vue.use(Vuex)
 
-const colors = new ColorSelections()
+interface State {
+    useGenericNames: boolean
+    colors: ColorSelections
+}
+
+const stateInstance: State = {
+    colors: new ColorSelections(),
+    useGenericNames: false,
+}
 
 export default new Vuex.Store({
-    state: {
-        colors,
-    },
+    state: stateInstance,
     mutations: {
-        setColor(state: any, payload: ColorsPayload) {
+        setColor(state: State, payload: ColorsPayload) {
             state.colors.set(payload)
+        },
+        toggleUseGenericNames(state: State) {
+            state.useGenericNames = !state.useGenericNames
         },
     },
     actions: {
         setColor(context: any, payload: ColorsPayload) {
             context.commit("setColor", payload)
         },
+        toggleUseGenericNames(context: any) {
+            context.commit("toggleUseGenericNames")
+        },
     },
     getters: {
-        color: (state: any) => (colorName: ColorName) => {
+        color: (state: State) => (colorName: ColorName) => {
             return state.colors.get(colorName)
+        },
+        useGenericName: (state: State) => () => {
+            return state.useGenericNames
         },
     },
 })
