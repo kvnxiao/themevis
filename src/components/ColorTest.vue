@@ -1,353 +1,82 @@
 <template lang="pug">
+    -
+        const columnHeaders = [
+            "\u00A0\u00A0\u00A0\u00A0",
+            "def",
+            "40m",
+            "41m",
+            "42m",
+            "43m",
+            "44m",
+            "45m",
+            "46m",
+            "47m",
+        ].join("\u00A0\u00A0\u00A0\u00A0\u00A0") + "\u00A0\u00A0\u00A0"
+        const rowHeaders = [
+            "\u00A0\u00A0\u00A0\u00A0\u00A0m\u00A0",
+            "\u00A0\u00A0\u00A0\u00A01m\u00A0",
+            "\u00A0\u00A0\u00A030m\u00A0",
+            "\u00A01;30m\u00A0",
+            "\u00A0\u00A0\u00A031m\u00A0",
+            "\u00A01;31m\u00A0",
+            "\u00A0\u00A0\u00A032m\u00A0",
+            "\u00A01;32m\u00A0",
+            "\u00A0\u00A0\u00A033m\u00A0",
+            "\u00A01;33m\u00A0",
+            "\u00A0\u00A0\u00A034m\u00A0",
+            "\u00A01;34m\u00A0",
+            "\u00A0\u00A0\u00A035m\u00A0",
+            "\u00A01;35m\u00A0",
+            "\u00A0\u00A0\u00A036m\u00A0",
+            "\u00A01;36m\u00A0",
+            "\u00A0\u00A0\u00A037m\u00A0",
+            "\u00A01;37m\u00A0",
+        ]
+        const columnColor = [
+            "background",
+            "color1",
+            "color2",
+            "color3",
+            "color4",
+            "color5",
+            "color6",
+            "color7",
+            "color8",
+        ]
+        const rowColor = [
+            "foreground",
+            "foreground",
+            "color1",
+            "color9",
+            "color2",
+            "color10",
+            "color3",
+            "color11",
+            "color4",
+            "color12",
+            "color5",
+            "color13",
+            "color6",
+            "color14",
+            "color7",
+            "color15",
+            "color8",
+            "color16",
+        ]
+        const testText = "\u00A0\u00A0•••\u00A0\u00A0".substr(0, 7)
     #colortest(:style="{ background: background, color: foreground }")
         p.window Terminal
         .body
             p > 
                 span(:style="{ color: color3 }") colortest
             br
-            p &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdef&nbsp&nbsp&nbsp&nbsp&nbsp40m&nbsp&nbsp&nbsp&nbsp&nbsp41m&nbsp&nbsp&nbsp&nbsp&nbsp42m&nbsp&nbsp&nbsp&nbsp&nbsp43m&nbsp&nbsp&nbsp&nbsp&nbsp44m&nbsp&nbsp&nbsp&nbsp&nbsp45m&nbsp&nbsp&nbsp&nbsp&nbsp46m&nbsp&nbsp&nbsp&nbsp&nbsp47m&nbsp&nbsp&nbsp
-            p &nbsp&nbsp&nbsp&nbsp&nbspm&nbsp
-                span
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp&nbsp1m&nbsp
-                span
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp30m&nbsp
-                span(:style="{ color: color1 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;30m&nbsp
-                span(:style="{ color: color9 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp31m&nbsp
-                span(:style="{ color: color2 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;31m&nbsp
-                span(:style="{ color: color10 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp32m&nbsp
-                span(:style="{ color: color3 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;32m&nbsp
-                span(:style="{ color: color11 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp33m&nbsp
-                span(:style="{ color: color4 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;33m&nbsp
-                span(:style="{ color: color12 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp34m&nbsp
-                span(:style="{ color: color5 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;34m&nbsp
-                span(:style="{ color: color13 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp35m&nbsp
-                span(:style="{ color: color6 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;35m&nbsp
-                span(:style="{ color: color14 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp36m&nbsp
-                span(:style="{ color: color7 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;36m&nbsp
-                span(:style="{ color: color15 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp&nbsp&nbsp37m&nbsp
-                span(:style="{ color: color8 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
-            p &nbsp1;37m&nbsp
-                span(:style="{ color: color16 }")
-                    span(:style="{ background: background }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color1 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color2 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color3 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color4 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color5 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color6 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color7 }") &nbsp&nbsp•••&nbsp&nbsp
-                    | &nbsp
-                    span(:style="{ background: color8 }") &nbsp&nbsp•••&nbsp&nbsp
+            p #{columnHeaders}
+            each rowName, index in rowHeaders
+                p #{rowName}
+                    span(:style=`{ color: ${rowColor[index]} }`)
+                        each val in columnColor
+                            span(:style=`{ background: ${val} }`) #{testText}
+                            | &nbsp
             br
 </template>
 
