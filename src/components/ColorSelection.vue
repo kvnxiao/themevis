@@ -1,7 +1,7 @@
 <template lang="pug">
     .field.has-addons
         p.control
-            a.button.is-static {{ name }}
+            a.button.is-static(:class="{ 'long-name': nameIsLong }") {{ name }}
         p.control.is-expanded
             input.input(type="text", :value="color", @input="set", @blur="refresh")
         p.control.color
@@ -16,6 +16,9 @@ import { ColorName, ColorsPayload, FORMAT_REGEX, FRIENDLY_NAMES } from "@/ts/col
 export default class ColorSelection extends Vue {
     @Prop()
     public colorName!: string
+
+    @Prop({default: false})
+    public nameIsLong!: boolean
 
     get name(): string {
         return (this.$store.getters.useGenericName())
@@ -47,6 +50,8 @@ a.button
     min-width: 2.5rem
     &.is-static
         min-width: 5.6rem
+    &.long-name
+        width: 7rem
 
 input
     font-family: monospace

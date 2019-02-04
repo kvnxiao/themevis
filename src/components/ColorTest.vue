@@ -2,7 +2,8 @@
     #colortest(:style="{ background: background, color: foreground }")
         p.window Terminal
         .body
-            p > colortest
+            p > 
+                span(:style="{ color: color3 }") colortest
             br
             p &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspdef&nbsp&nbsp&nbsp&nbsp&nbsp40m&nbsp&nbsp&nbsp&nbsp&nbsp41m&nbsp&nbsp&nbsp&nbsp&nbsp42m&nbsp&nbsp&nbsp&nbsp&nbsp43m&nbsp&nbsp&nbsp&nbsp&nbsp44m&nbsp&nbsp&nbsp&nbsp&nbsp45m&nbsp&nbsp&nbsp&nbsp&nbsp46m&nbsp&nbsp&nbsp&nbsp&nbsp47m&nbsp&nbsp&nbsp
             p &nbsp&nbsp&nbsp&nbsp&nbspm&nbsp

@@ -7,8 +7,8 @@
 
         p Primary
 
-        color-selection(colorName="background")
-        color-selection(colorName="foreground")
+        color-selection(colorName="background", nameIsLong="true")
+        color-selection(colorName="foreground", nameIsLong="true")
 
         .columns
             .column
