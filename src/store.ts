@@ -39,5 +39,8 @@ export default new Vuex.Store({
         useGenericName: (state: State) => () => {
             return state.useGenericNames
         },
+        exportJson: (state: State) => () => {
+            return state.colors.toJson()
+        },
     },
 })

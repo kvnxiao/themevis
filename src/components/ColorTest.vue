@@ -155,7 +155,7 @@ export default class NavBar extends Vue {
     .body
         white-space: nowrap
         overflow-x: auto
-        font-family: "Fira Code", monospace
+        font-family: "Fira Code", "Menlo", monospace
         letter-spacing: 0.25px
         line-height: 1.25
     span

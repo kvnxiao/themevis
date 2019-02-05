@@ -116,6 +116,10 @@ export default class ColorSelections {
     public get(colorName: ColorName): TinyColor {
         return this[colorName]
     }
+
+    public toJson(): string {
+        return JSON.stringify(this)
+    }
 }
 
 /**

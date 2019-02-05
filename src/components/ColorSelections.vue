@@ -31,6 +31,7 @@
                 color-selection(colorName="color14")
                 color-selection(colorName="color15")
                 color-selection(colorName="color16")
+        a.button(@click="exportColors")
 </template>
 
 <script lang="ts">
@@ -47,6 +48,10 @@ export default class ColorSelections extends Vue {
 
     public toggle() {
         this.$store.commit("toggleUseGenericNames")
+    }
+
+    public exportColors() {
+        console.log(this.$store.getters.exportJson())
     }
 }
 </script>
