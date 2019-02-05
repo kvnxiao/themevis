@@ -1,4 +1,4 @@
-# themevis
+# themeviz
 
 A colour palette visualizer for creating your favourite themes (for your favourite tools).
 
