@@ -31,7 +31,7 @@
                 color-selection(colorName="color14")
                 color-selection(colorName="color15")
                 color-selection(colorName="color16")
-        a.button(@click="exportColors")
+        a.button#save(@click="exportColors") Save Colors
 </template>
 
 <script lang="ts">
@@ -51,7 +51,8 @@ export default class ColorSelections extends Vue {
     }
 
     public exportColors() {
-        console.log(this.$store.getters.exportJson())
+        // TODO: show modal
+        this.$store.getters.colors().toJSON()
     }
 }
 </script>
@@ -67,4 +68,9 @@ export default class ColorSelections extends Vue {
 
 .checkbox:hover
     color: inherit
+
+#save
+    margin: 0 auto
+    display: block
+    width: fit-content
 </style>

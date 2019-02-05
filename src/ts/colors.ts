@@ -45,7 +45,7 @@ export const FRIENDLY_NAMES: { [key: string]: string } = {
     color6: "Magenta",
     color7: "Cyan",
     color8: "White",
-    color9:  "Black",
+    color9: "Black",
     color10: "Red",
     color11: "Green",
     color12: "Yellow",
@@ -61,6 +61,7 @@ export const FRIENDLY_NAMES: { [key: string]: string } = {
  * Class to encapsulate all the color selections that can be made
  */
 export default class ColorSelections {
+    private name: string
     private background: TinyColor
     private foreground: TinyColor
     private color1: TinyColor
@@ -81,6 +82,8 @@ export default class ColorSelections {
     private color16: TinyColor
 
     constructor() {
+        // TODO: add functionality to save / load color selections with names
+        this.name = ""
         this.background = new TinyColor("#2E3440")
         this.foreground = new TinyColor("#D8DEE9")
         this.color1 = new TinyColor("#3B4252")
@@ -117,8 +120,13 @@ export default class ColorSelections {
         return this[colorName]
     }
 
-    public toJson(): string {
-        return JSON.stringify(this)
+    /**
+     * Returns a simplified object representation of the currently selected colors
+     */
+    public toJSON(): any {
+        return Object.assign({}, ...Object.entries(this).map((pair: [string, TinyColor]) => {
+            return { [pair[0]]: pair[1].toHexString() }
+        }))
     }
 }
 
