@@ -4,6 +4,7 @@
             h1.title Theme Visualizer
             hr(:style="{ backgroundColor: background }")
             color-selections
+            photoshop-color-picker
             hr(:style="{ backgroundColor: background }")
             h2.subtitle Preview
             color-test
@@ -14,11 +15,13 @@ import ColorSelections from "@/components/ColorSelections.vue"
 import ColorTest from "@/components/ColorTest.vue"
 import { ColorName } from "@/ts/colors"
 import { Component, Vue } from "vue-property-decorator"
+import PhotoshopColorPicker from "@/components/PhotoshopColorPicker.vue"
 
 @Component({
     components: {
         ColorSelections,
         ColorTest,
+        PhotoshopColorPicker,
     },
 })
 export default class Home extends Vue {
