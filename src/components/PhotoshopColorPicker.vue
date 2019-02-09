@@ -2,9 +2,9 @@
     .pscp
         .color-area
             .bg(:style="styleBackground")
-            .fg(:style="styleForeground", @mousedown="mousePicker", @mousemove="mousePicker")
+            .fg(:style="styleForeground")
             .cursor(:style="styleCursor")
-        .slider-area(@mousedown="mouseSlider", @mousemove="mouseSlider")
+        .slider-area
             .slider(:style="styleSlider")
                 .pointer(:style="styleSliderPos")
                     img(src="/svg/spl.svg").left
@@ -102,45 +102,103 @@ export default class PhotoshopColorPicker extends Vue {
     // event listeners //
     /////////////////////
 
-    // TODO: make this listener global so that the cursor can still be dragged out of the picker area
+    private isColorArea: boolean = false
+    private isSliderArea: boolean = false
+    private top: number = 0
+    private left: number = 0
+
     /**
-     * Event listener for left-click and left-click-dragging over the color picking area
+     * mousedown event listener added to document on mounted lifecycle hook
+     * to allow us to know that a user has clicked in the color area or slider area
+     */
+    public mousedown(event: MouseEvent) {
+        if (event.buttons !== 1) {
+            return
+        }
+
+        const element = event.target as HTMLElement
+        switch (element.className) {
+            case "color-area": {
+                event.preventDefault()
+                this.isColorArea = true
+                const boundingRect = element.getBoundingClientRect()
+                this.top = boundingRect.top
+                this.left = boundingRect.left
+                this.onmousePicker(event.offsetX, event.offsetY)
+                break
+            }
+            case "slider-area": {
+                event.preventDefault()
+                this.isSliderArea = true
+                const boundingRect = element.getBoundingClientRect()
+                this.top = boundingRect.top
+                this.left = boundingRect.left
+                this.onmouseSlider(event.offsetY)
+                break
+            }
+        }
+    }
+
+    /**
+     * mousemove event listener added to document on mounted lifecycle hook
+     * to allow the cursor within the color / slider area to move even if the
+     * mouse cursor is outside the boundaries of the color / slider area element
+     */
+    public mousemove(event: MouseEvent) {
+        if (event.buttons !== 1) {
+            return
+        }
+
+        if (this.isColorArea) {
+            event.preventDefault()
+            this.onmousePicker(event.clientX - this.left, event.clientY - this.top)
+        } else if (this.isSliderArea) {
+            event.preventDefault()
+            this.onmouseSlider(event.clientY - this.top)
+        }
+    }
+
+    /**
+     * mouseup event listener added to document on mounted lifecycle hook
+     * to allow us to know that a user has let go from having clicked on
+     * the color area or slider area
+     */
+    public mouseup(event: MouseEvent) {
+        this.isColorArea = false
+        this.isSliderArea = false
+    }
+
+    /**
+     * Event handler for left-click and left-click-dragging over the color picking area
      * Saves local cursor position to calculate the new color
      */
-    public mousePicker(event: MouseEvent) {
-        event.preventDefault()
+    public onmousePicker(offsetX: number, offsetY: number) {
+        if (this.isColorArea) {
+            // update cursor position
+            this.x = offsetX.clamp(0, AREA_SIZE)
+            this.y = AREA_SIZE - offsetY.clamp(0, AREA_SIZE)
 
-        if (event.buttons !== 1) {
-            return
+            // update color
+            this.setColor()
         }
-
-        // update cursor position
-        this.x = event.offsetX.clamp(0, AREA_SIZE)
-        this.y = AREA_SIZE - event.offsetY.clamp(0, AREA_SIZE)
-
-        // update color
-        this.setColor()
     }
 
     /**
-     * Event listener for left-click and left-click-dragging over the color slider
+     * Event handler for left-click and left-click-dragging over the color slider
      * Saves local slider position to calculate the new color
      */
-    public mouseSlider(event: MouseEvent) {
-        event.preventDefault()
-        if (event.buttons !== 1) {
-            return
+    public onmouseSlider(offsetY: number) {
+        if (this.isSliderArea) {
+            // update slider position
+            this.z = AREA_SIZE - offsetY.clamp(0, AREA_SIZE)
+
+            // update color
+            this.setColor()
         }
-
-        // update slider position
-        this.z = AREA_SIZE - event.offsetY.clamp(0, AREA_SIZE)
-
-        // update color
-        this.setColor()
     }
 
     /**
-     * Event listener for clicking the radio button modes, fired when the mode selection
+     * Event handler for clicking the radio button modes, fired when the mode selection
      * is changed
      */
     public modeSelected(event: Event, mode: picker.Mode) {
@@ -148,6 +206,18 @@ export default class PhotoshopColorPicker extends Vue {
         this.mode = mode
         // update positions to reflect changes to current mode
         this.updatePositions()
+    }
+
+    public mounted() {
+        document.addEventListener("mousedown", this.mousedown)
+        document.addEventListener("mousemove", this.mousemove)
+        document.addEventListener("mouseup", this.mouseup)
+    }
+
+    public beforeDestroy() {
+        document.removeEventListener("mousedown", this.mousedown)
+        document.removeEventListener("mousemove", this.mousemove)
+        document.removeEventListener("mouseup", this.mouseup)
     }
 
     ////////////////////
@@ -285,6 +355,7 @@ export default class PhotoshopColorPicker extends Vue {
     flex-direction: row
 
 .bg, .fg, .slider
+        pointer-events: none
         position: absolute
         width: 100%
         height: 100%
