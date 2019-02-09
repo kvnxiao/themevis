@@ -265,6 +265,7 @@ export default class PhotoshopColorPicker extends Vue {
         height: 100%
 
 .color-area
+    cursor: crosshair
     background: #FFFFFF
     position: relative
     width: 256px
