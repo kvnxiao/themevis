@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate" viewBox="0 0 12 12" width="12" height="12">
+    <defs>
+        <clipPath id="_clipPath_acmmm2ppafgDofuOBI4LdBHMiHDAxCiu">
+            <rect width="12" height="12"/>
+        </clipPath>
+    </defs>
+    <g clip-path="url(#_clipPath_acmmm2ppafgDofuOBI4LdBHMiHDAxCiu)">
+        <path transform="scale(-1, 1) translate(-12, 0)" d=" M 2 3 L 3 2 L 5 2 L 10 6 L 5 10 L 3 10 L 2 9 L 2 3 Z " fill="rgb(255,255,255)" vector-effect="non-scaling-stroke" stroke-width="1" stroke="rgb(0,0,0)" stroke-linejoin="miter" stroke-linecap="square" stroke-miterlimit="3"/>
+    </g>
+</svg>

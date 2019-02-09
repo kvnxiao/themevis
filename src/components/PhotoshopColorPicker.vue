@@ -4,8 +4,11 @@
             .bg(:style="styleBackground")
             .fg(:style="styleForeground", @mousedown="mousePicker", @mousemove="mousePicker")
             .cursor(:style="styleCursor")
-        .slider-area
-            .slider(:style="styleSlider", @mousedown="mouseSlider", @mousemove="mouseSlider")
+        .slider-area(@mousedown="mouseSlider", @mousemove="mouseSlider")
+            .slider(:style="styleSlider")
+                .pointer(:style="styleSliderPos")
+                    img(src="/svg/spl.svg").left
+                    img(src="/svg/spr.svg").right
         .col
             .preview
                 .color-block
@@ -45,6 +48,7 @@
                     span.type # 
                     input(type="text", name="hex", :value="colorHex")
         .col
+            
 </template>
 
 <script lang="ts">
@@ -222,6 +226,12 @@ export default class PhotoshopColorPicker extends Vue {
         }
     }
 
+    get styleSliderPos() {
+        return {
+            top: `${AREA_SIZE - this.z - 5}px`,
+        }
+    }
+
     /////////////////////
     // logical methods //
     /////////////////////
@@ -297,11 +307,27 @@ export default class PhotoshopColorPicker extends Vue {
         pointer-events: none
 
 .slider-area
-    background: #000000
-    margin: 0 1em
     position: relative
     height: 256px
+    width: 43px
+
+.slider
+    margin: 0 1em
     width: 19px
+
+.pointer
+    pointer-events: none
+    position: relative
+    top: -6px
+
+    .left, .right
+        position: absolute
+    
+    .left
+        left: -11px
+
+    .right
+        right: -11px
 
 .color-block
     width: 64px
@@ -311,7 +337,7 @@ export default class PhotoshopColorPicker extends Vue {
 input[type=radio]
     height: 14px
     width: 14px
-    margin: 0 5px 0 0
+    margin: 0 5px 0 1px
     vertical-align: middle
 
 .type
