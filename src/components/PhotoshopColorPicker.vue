@@ -330,6 +330,7 @@ export default class PhotoshopColorPicker extends Vue {
         right: -11px
 
 .color-block
+    text-align: center
     width: 64px
     .new, .current
         height: 32px
