@@ -108,8 +108,24 @@ export function colorValuesToCoordinates(colorBlock: HSVRGBColor, mode: Mode, si
                 y: colorBlock.s.fromPercent(size),
                 z: colorBlock.v.fromPercent(size),
             }
-        default:
-            return { x: 0, y: 0, z: 0 }
+        case Mode.RED:
+            return {
+                x: colorBlock.b,
+                y: colorBlock.g,
+                z: colorBlock.r,
+            }
+        case Mode.GREEN:
+            return {
+                x: colorBlock.b,
+                y: colorBlock.r,
+                z: colorBlock.g,
+            }
+        case Mode.BLUE:
+            return {
+                x: colorBlock.r,
+                y: colorBlock.g,
+                z: colorBlock.b,
+            }
     }
 }
 
@@ -306,5 +322,62 @@ export function brightnessSlider(hue: number, saturation: number): BackgroundSty
     const topColor = new TinyColor({ h: hue, s: saturation, v: 1}).toRgbString()
     return {
         background: `linear-gradient(to top, #000000, ${topColor})`,
+    }
+}
+
+// Red
+export function redBackground(red: number): BackgroundStyle {
+    return {
+        background: `rgb(${red}, 0, 0)`,
+    }
+}
+
+export const redForeground: BackgroundStyle = {
+    background: "linear-gradient(to right, transparent, rgb(0, 0, 255)), linear-gradient(to top, transparent, rgb(0, 255, 0))",
+    backgroundBlendMode: "screen",
+    mixBlendMode: "screen",
+}
+
+export function redSlider(green: number, blue: number): BackgroundStyle {
+    return {
+        background: `linear-gradient(to top, rgb(0, ${green}, ${blue}), rgb(255, ${green}, ${blue}))`,
+    }
+}
+
+// Green
+export function greenBackground(green: number): BackgroundStyle {
+    return {
+        background: `rgb(0, ${green}, 0)`,
+    }
+}
+
+export const greenForeground: BackgroundStyle = {
+    background: "linear-gradient(to right, transparent, rgb(0, 0, 255)), linear-gradient(to top, transparent, rgb(255, 0, 0))",
+    backgroundBlendMode: "screen",
+    mixBlendMode: "screen",
+}
+
+export function greenSlider(red: number, blue: number): BackgroundStyle {
+    return {
+        background: `linear-gradient(to top, rgb(${red}, 0, ${blue}), rgb(${red}, 255, ${blue}))`,
+    }
+}
+
+// Blue
+export function blueBackground(blue: number): BackgroundStyle {
+    return {
+        background: `rgb(0, 0, ${blue})`,
+    }
+}
+
+export const blueForeground: BackgroundStyle = {
+    background: "linear-gradient(to right, transparent, rgb(255, 0, 0)), linear-gradient(to top, transparent, rgb(0, 255, 0))",
+    backgroundBlendMode: "screen",
+    mixBlendMode: "screen",
+}
+
+export function blueSlider(red: number, green: number): BackgroundStyle {
+    return {
+        background: `linear-gradient(to top, rgb(${red}, ${green}, 0), rgb(${red}, ${green}, 255))`,
     }
 }

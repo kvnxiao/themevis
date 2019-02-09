@@ -165,6 +165,12 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.saturationForeground
             case picker.Mode.BRIGHTNESS:
                 return picker.brightnessForeground(1 - this.z.asPercent(AREA_SIZE))
+            case picker.Mode.RED:
+                return picker.redForeground
+            case picker.Mode.GREEN:
+                return picker.greenForeground
+            case picker.Mode.BLUE:
+                return picker.blueForeground
             default:
                 return {}
         }
@@ -178,8 +184,12 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.saturationBackground(this.z.asPercent(AREA_SIZE))
             case picker.Mode.BRIGHTNESS:
                 return picker.brightnessBackground
-            default:
-                return {}
+            case picker.Mode.RED:
+                return picker.redBackground(this.red)
+            case picker.Mode.GREEN:
+                return picker.greenBackground(this.green)
+            case picker.Mode.BLUE:
+                return picker.blueBackground(this.blue)
         }
     }
 
@@ -191,8 +201,12 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.saturationSlider(this.x.asDegree(AREA_SIZE), this.y.asPercent(AREA_SIZE))
             case picker.Mode.BRIGHTNESS:
                 return picker.brightnessSlider(this.x.asDegree(AREA_SIZE), this.y.asPercent(AREA_SIZE))
-            default:
-                return {}
+            case picker.Mode.RED:
+                return picker.redSlider(this.green, this.blue)
+            case picker.Mode.GREEN:
+                return picker.greenSlider(this.red, this.blue)
+            case picker.Mode.BLUE:
+                return picker.blueSlider(this.red, this.green)
         }
     }
 
