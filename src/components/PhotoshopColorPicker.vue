@@ -16,31 +16,34 @@
             .fields
                 .option
                     input(type="radio", name="color", value="H", @change="modeSelected($event, 0)", checked)
-                    span.type H:
-                    input(type="number", :value="hue", min="0", max="360")
-                    |  °
+                    span.type H: 
+                    input(type="number", :value="h", min="0", max="360")
+                    span.post-type °
                 .option
                     input(type="radio", name="color", value="S", @change="modeSelected($event, 1)")
-                    span.type S:
-                    input(type="number", :value="saturation", min="0", max="100")
-                    |  %
+                    span.type S: 
+                    input(type="number", :value="s", min="0", max="100")
+                    span.post-type %
                 .option
                     input(type="radio", name="color", value="V", @change="modeSelected($event, 2)")
-                    span.type B:
-                    input(type="number", :value="brightness", min="0", max="100")
-                    |  %
+                    span.type B: 
+                    input(type="number", :value="v", min="0", max="100")
+                    span.post-type %
                 .option
                     input(type="radio", name="color", value="R", @change="modeSelected($event, 3)")
-                    span.type R:
-                    input(type="number", :value="red", min="0", max="255")
+                    span.type R: 
+                    input(type="number", :value="r", min="0", max="255")
                 .option
                     input(type="radio", name="color", value="G", @change="modeSelected($event, 4)")
-                    span.type G:
-                    input(type="number", :value="green", min="0", max="255")
+                    span.type G: 
+                    input(type="number", :value="g", min="0", max="255")
                 .option
                     input(type="radio", name="color", value="B", @change="modeSelected($event, 5)")
-                    span.type B:
-                    input(type="number", :value="blue", min="0", max="255")
+                    span.type B: 
+                    input(type="number", :value="b", min="0", max="255")
+                .option
+                    span.type # 
+                    input(type="text", name="hex", :value="colorHex")
         .col
 </template>
 
@@ -61,14 +64,35 @@ export default class PhotoshopColorPicker extends Vue {
     private z: number = 0
     // color values
     private hue: number = 0
+    get h() {
+        return Math.round(this.hue)
+    }
     private saturation: number = 0
-    private brightness: number = 0
+    get s() {
+        return Math.round(this.saturation)
+    }
+    private value: number = 0
+    get v() {
+        return Math.round(this.value)
+    }
     private red: number = 0
+    get r() {
+        return Math.round(this.red)
+    }
     private green: number = 0
+    get g() {
+        return Math.round(this.green)
+    }
     private blue: number = 0
+    get b() {
+        return Math.round(this.blue)
+    }
     // new and old ("photoshop current") color setting
     private newColor: TinyColor = new TinyColor()
     private oldColor: TinyColor = new TinyColor()
+    get colorHex() {
+        return this.newColor.toHex()
+    }
 
     /////////////////////
     // event listeners //
@@ -139,8 +163,11 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.hueForeground
             case picker.Mode.SATURATION:
                 return picker.saturationForeground
+            case picker.Mode.BRIGHTNESS:
+                return picker.brightnessForeground(1 - this.z.asPercent(AREA_SIZE))
+            default:
+                return {}
         }
-        return {}
     }
 
     get styleBackground(): picker.BackgroundStyle {
@@ -149,8 +176,11 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.hueBackground(this.z.asDegree(AREA_SIZE))
             case picker.Mode.SATURATION:
                 return picker.saturationBackground(this.z.asPercent(AREA_SIZE))
+            case picker.Mode.BRIGHTNESS:
+                return picker.brightnessBackground
+            default:
+                return {}
         }
-        return {}
     }
 
     get styleSlider(): picker.BackgroundStyle {
@@ -159,8 +189,11 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.hueSlider
             case picker.Mode.SATURATION:
                 return picker.saturationSlider(this.x.asDegree(AREA_SIZE), this.y.asPercent(AREA_SIZE))
+            case picker.Mode.BRIGHTNESS:
+                return picker.brightnessSlider(this.x.asDegree(AREA_SIZE), this.y.asPercent(AREA_SIZE))
+            default:
+                return {}
         }
-        return {}
     }
 
     get styleNewColor(): picker.BackgroundStyle {
@@ -183,61 +216,35 @@ export default class PhotoshopColorPicker extends Vue {
      * Sets the new color based on the current mode and x, y, z positions
      */
     private setColor() {
-        switch (this.mode) {
-            case picker.Mode.HUE: {
-                const h = this.z.asDegree(AREA_SIZE)
-                const s = this.x.asPercent(AREA_SIZE)
-                const v = this.y.asPercent(AREA_SIZE)
-                this.newColor = new TinyColor({ h, s, v })
-                break
-            }
-            case picker.Mode.SATURATION: {
-                const h = this.x.asDegree(AREA_SIZE)
-                const s = this.z.asPercent(AREA_SIZE)
-                const v = this.y.asPercent(AREA_SIZE)
-                this.newColor = new TinyColor({ h, s, v})
-                break
-            }
-            case picker.Mode.BRIGHTNESS: {
-                break
-            }
-            case picker.Mode.RED: {
-                break
-            }
-            case picker.Mode.GREEN: {
-                break
-            }
-            case picker.Mode.BLUE: {
-                break
-            }
-        }
-        this.red = Math.round(this.newColor.r)
-        this.green = Math.round(this.newColor.g)
-        this.blue = Math.round(this.newColor.b)
-        const hsv = this.newColor.toHsv()
-        this.hue = Math.round(hsv.h)
-        this.saturation = Math.round(hsv.s * 100)
-        this.brightness = Math.round(hsv.v * 100)
+        const prevColor = this.newColor
+        const colorBlock = picker.coordinatesToColorValues({ x: this.x, y: this.y, z: this.z }, this.mode, AREA_SIZE)
+
+        this.hue = colorBlock.h
+        this.saturation = colorBlock.s
+        this.value = colorBlock.v
+        this.red = colorBlock.r
+        this.green = colorBlock.g
+        this.blue = colorBlock.b
+        this.newColor = colorBlock.color
     }
 
     /**
      * Updates x, y, z values based on the current selected mode
      */
     private updatePositions() {
-        // TODO
-        const hsvCoords: picker.HSVANumbers = picker.toCoordinates(this.newColor.toHsv(), AREA_SIZE)
-        switch (this.mode) {
-            case picker.Mode.HUE:
-                this.x = hsvCoords.s
-                this.y = hsvCoords.v
-                this.z = hsvCoords.h
-                break
-            case picker.Mode.SATURATION:
-                this.x = hsvCoords.h
-                this.y = hsvCoords.v
-                this.z = hsvCoords.s
-                break
+        const colorBlock: picker.HSVRGBColor = {
+            color: this.newColor,
+            h: this.hue,
+            s: this.saturation / 100,
+            v: this.value / 100,
+            r: this.red,
+            g: this.green,
+            b: this.blue,
         }
+        const coordinates = picker.colorValuesToCoordinates(colorBlock, this.mode, AREA_SIZE)
+        this.x = coordinates.x
+        this.y = coordinates.y
+        this.z = coordinates.z
     }
 }
 </script>
@@ -284,4 +291,42 @@ export default class PhotoshopColorPicker extends Vue {
     width: 64px
     .new, .current
         height: 32px
+
+input[type=radio]
+    height: 14px
+    width: 14px
+    margin: 0 5px 0 0
+    vertical-align: middle
+
+.type
+    vertical-align: middle
+    display: inline-block
+    width: 1.8em
+.post-type
+    margin-left: 5px
+
+input[type=text], input[type=number]
+    padding: 0 5px
+    font-size: 12px
+    box-sizing: border-box
+    height: 22px
+    color: #f0f0f0
+    background-color: #454545
+    border: 1px solid #666666
+
+input[type=number]
+    width: 3em
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button
+        -webkit-appearance: none
+        margin: 0
+
+input[type=text]
+    width: 6em
+
+.option
+    display: flex
+    align-items: center
+    margin-top: 0.4em
+.option:nth-of-type(4)
+    margin-top: 0.667em
 </style>

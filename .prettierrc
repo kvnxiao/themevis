@@ -3,5 +3,6 @@
     "tabWidth": 4,
     "semi": false,
     "singleQuote": false,
-    "arrowParens": "always"
+    "arrowParens": "always",
+    "printWidth": 120
 }
