@@ -266,7 +266,8 @@ export default class PhotoshopColorPicker extends Vue {
 <style lang="sass" scoped>
 .pscp
     user-select: none
-    border: 1px solid black
+    border: 1px solid #84807f
+    background: #535353
     max-width: fit-content
     font-size: 12px
     padding: 1em
