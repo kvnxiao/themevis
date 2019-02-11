@@ -1,5 +1,5 @@
 <template lang="pug">
-    .pscp
+    .pscp(:style=" { background: containerBackground, color: containerColor } ")
         .color-area
             .bg(:style="styleBackground")
             .fg(:style="styleForeground")
@@ -20,40 +20,39 @@
                 .option
                     input(type="radio", name="color", value="H", @change="modeSelected($event, 0)", checked)
                     span.type H: 
-                    input(type="number", :value="h", min="0", max="360")
+                    input.input(type="number", :value="h", min="0", max="360", :style="styleInput")
                     span.post-type °
                 .option
                     input(type="radio", name="color", value="S", @change="modeSelected($event, 1)")
                     span.type S: 
-                    input(type="number", :value="s", min="0", max="100")
+                    input.input(type="number", :value="s", min="0", max="100", :style="styleInput")
                     span.post-type %
                 .option
                     input(type="radio", name="color", value="V", @change="modeSelected($event, 2)")
                     span.type B: 
-                    input(type="number", :value="v", min="0", max="100")
+                    input.input(type="number", :value="v", min="0", max="100", :style="styleInput")
                     span.post-type %
                 .option
                     input(type="radio", name="color", value="R", @change="modeSelected($event, 3)")
                     span.type R: 
-                    input(type="number", :value="r", min="0", max="255")
+                    input.input(type="number", :value="r", min="0", max="255", :style="styleInput")
                 .option
                     input(type="radio", name="color", value="G", @change="modeSelected($event, 4)")
                     span.type G: 
-                    input(type="number", :value="g", min="0", max="255")
+                    input.input(type="number", :value="g", min="0", max="255", :style="styleInput")
                 .option
                     input(type="radio", name="color", value="B", @change="modeSelected($event, 5)")
                     span.type B: 
-                    input(type="number", :value="b", min="0", max="255")
+                    input.input(type="number", :value="b", min="0", max="255", :style="styleInput")
                 .option
                     span.type # 
-                    input(type="text", name="hex", :value="colorHex")
-        .col
-            
+                    input.input(type="text", name="hex", :value="colorHex", :style="styleInput")
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator"
 import { TinyColor } from "@ctrl/tinycolor"
+import { ColorName } from "@/ts/colors"
 import * as picker from "@/ts/picker"
 
 const AREA_SIZE: number = 255
@@ -224,6 +223,22 @@ export default class PhotoshopColorPicker extends Vue {
     // style bindings //
     ////////////////////
 
+    get containerBackground() {
+        return this.$store.getters.color(ColorName.background).toHexString()
+    }
+
+    get containerColor() {
+        return this.$store.getters.color(ColorName.foreground).toHexString()
+    }
+
+    get styleInput() {
+        return {
+            borderColor: this.$store.getters.color(ColorName.background).lighten(10).toHexString(),
+            background: this.$store.getters.color(ColorName.background).darken(5).toHexString(),
+            color: this.$store.getters.color(ColorName.foreground).toHexString(),
+        }
+    }
+
     get styleCursor() {
         return {
             transform: `translate(${this.x - 6}px, ${AREA_SIZE - this.y - 6}px)`,
@@ -245,8 +260,6 @@ export default class PhotoshopColorPicker extends Vue {
                 return picker.greenForeground
             case picker.Mode.BLUE:
                 return picker.blueForeground
-            default:
-                return {}
         }
     }
 
@@ -346,7 +359,9 @@ export default class PhotoshopColorPicker extends Vue {
 <style lang="sass" scoped>
 .pscp
     user-select: none
-    border: 1px solid #84807f
+    box-shadow: 0 5px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22)
+    margin: 0 auto
+    border-radius: 4px
     background: #535353
     max-width: fit-content
     font-size: 12px

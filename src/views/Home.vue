@@ -3,8 +3,9 @@
         .container
             h1.title Theme Visualizer
             hr(:style="{ backgroundColor: background }")
-            color-selections
-            photoshop-color-picker
+            .colors
+                color-selections
+                photoshop-color-picker
             hr(:style="{ backgroundColor: background }")
             h2.subtitle Preview
             color-test
@@ -32,4 +33,10 @@ export default class Home extends Vue {
 </script>
 
 <style lang="sass" scoped>
+.colors
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    .pscp
+        margin: 0 auto
 </style>
