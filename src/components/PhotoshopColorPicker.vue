@@ -1,9 +1,13 @@
 <template lang="pug">
     .pscp(:style=" { background: containerBackground, color: containerColor } ")
-        .color-area
-            .bg(:style="styleBackground")
-            .fg(:style="styleForeground")
-            .cursor(:style="styleCursor")
+        .left-wrapper
+            .color-area
+                .bg(:style="styleBackground")
+                .fg(:style="styleForeground")
+                .cursor(:style="styleCursor")
+            .confirmation
+                button.button.is-small OK
+                button.button.is-small(@click="resetColorAndPositions") Cancel
         .slider-area
             .slider(:style="styleSlider")
                 .pointer(:style="styleSliderPos")
@@ -480,4 +484,17 @@ input[type=text]
     margin-top: 0.4em
 .option:nth-of-type(4)
     margin-top: 0.667em
+
+.confirmation
+    display: flex
+    justify-content: space-around
+    padding: 0.5rem 0.5rem 0 0.5rem
+    .button.is-small
+        color: #f0f0f0
+        background-color: #454545
+        border-color: #666666
+        border-radius: 2rem
+        width: 6.5rem
+        &:hover, &:active
+            border-color: #dddddd
 </style>
