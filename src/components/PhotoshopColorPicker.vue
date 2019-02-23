@@ -14,7 +14,7 @@
                 .color-block
                     div new
                     .new(:style="styleNewColor")
-                    .current(:style="styleOldColor")
+                    .current(:style="styleOldColor", @click="resetColorAndPositions")
                     div current
             .fields
                 .option
@@ -352,6 +352,28 @@ export default class PhotoshopColorPicker extends Vue {
         this.x = coordinates.x
         this.y = coordinates.y
         this.z = coordinates.z
+    }
+
+    /**
+     * Resets the color and positions based on current selected mode
+     */
+    private resetColorAndPositions() {
+        this.newColor = this.oldColor
+        const hsv = this.newColor.toHsv()
+        const colorBlock: picker.HSVRGBColor = {
+            color: this.newColor,
+            h: hsv.h.asDegree(AREA_SIZE),
+            s: hsv.s.asPercent(AREA_SIZE),
+            v: hsv.v.asPercent(AREA_SIZE),
+            r: this.newColor.r,
+            g: this.newColor.g,
+            b: this.newColor.b,
+        }
+        const coordinates = picker.colorValuesToCoordinates(colorBlock, this.mode, AREA_SIZE)
+        this.x = coordinates.x
+        this.y = coordinates.y
+        this.z = coordinates.z
+        this.setColor()
     }
 }
 </script>
